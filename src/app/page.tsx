@@ -1,101 +1,87 @@
-import Image from "next/image";
+'use client';
+
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
+// import { Metadata } from 'next';
+
+// export const metadata: Metadata = {
+//   title: "Dream Homes | Find Your Perfect Property",
+//   description: "Discover premium properties in Ahmedabad with Dream Homes",
+//   openGraph: {
+//     images: [{ url: "/og-image.jpg" }],
+//   },
+//   keywords: ["real estate", "Ahmedabad properties", "luxury homes"],
+// };
+
+
+import { useQuery } from '@tanstack/react-query';
+import { Skeleton } from '@/components/ui/skeleton';
+import PropertyCard from '@/components/PropertyCard';
+import { Property, PropertyFilters } from '@/types/property';
+import Pagination from '@/components/Pagination';
+
+async function fetchProperties(page: number, filters: PropertyFilters) {
+  const params = new URLSearchParams({
+    // page: page.toString(),
+    // ...filters
+  });
+  const response = await fetch(`/api/properties?${params}`);
+  if (!response.ok) throw new Error('Failed to fetch properties');
+  return response.json();
+}
+
+export function PropertyGrid({ page, filters }: { page: number; filters: PropertyFilters }) {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['properties', page, filters],
+    queryFn: () => fetchProperties(page, filters),
+    // keepPreviousData: true
+  });
+
+  if (error) return <div className="text-center text-red-500">Error loading properties</div>;
+
+  if (isLoading) return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[...Array(6)].map((_, i) => (
+        <Skeleton key={i} className="h-[350px] rounded-lg" />
+      ))}
+    </div>
+  );
+
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {data.properties.map((property: Property) => (
+          <PropertyCard key={property._id} property={property} />
+        ))}
+      </div>
+      <Pagination currentPage={page} totalPages={data.totalPages} onPageChange={()=>{}} />
+    </>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <main>
+      <section className="relative h-[600px]">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/hero.png"
+          alt="Luxury Property"
+          fill
+          className="object-cover"
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <div className="text-center text-white space-y-6">
+            <h1 className="text-5xl font-bold">Find Your Dream Home</h1>
+            <p className="text-xl">Discover premium properties across Ahmedabad</p>
+            <Button asChild size="lg">
+              <Link href="/properties">Browse Properties</Link>
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+      {/* <FeaturedProperties /> */}
+    </main>
   );
 }
