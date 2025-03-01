@@ -3,6 +3,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/admin/app-sidebar";
 import { geistMono, geistSans } from "@/lib/fonts";
 import "../../globals.css";
+import { Header } from "@/components/header";
 
 export default async function AdminLayout({
   children,
@@ -16,13 +17,11 @@ export default async function AdminLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <SidebarProvider defaultOpen={defaultOpen}>
-          <div className="flex min-h-screen">
-            <AppSidebar />
-            <main className="flex-1">
-              <SidebarTrigger />
-              {children}
-            </main>
-          </div>
+          <AppSidebar />
+          <Header>
+            {/* <div className="ml-auto flex items-center gap-4"></div> */}
+          </Header>
+          <main className="flex flex-1 min-h-screen">{children}</main>
         </SidebarProvider>
       </body>
     </html>
