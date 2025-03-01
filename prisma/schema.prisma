@@ -20,3 +20,43 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+enum PropertyType {
+  house
+  flat
+  commercial
+}
+
+enum PropertyFor {
+  rent
+  sale
+}
+
+model Property {
+  id            Int          @id @default(autoincrement())
+  property_type PropertyType
+  address       String       @db.VarChar(255)
+  bedrooms      Int
+  bathrooms     Int
+  sqft          Int
+  year_built    Int
+  for           PropertyFor
+  price         String       @db.VarChar(50)
+  imageUrl      String
+  Description   String       @db.Text
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([property_type])
+  @@index([for])
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

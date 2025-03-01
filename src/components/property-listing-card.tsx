@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Bed, Bath, SquareIcon, User, Clock, Share2, Heart, Maximize } from "lucide-react"
-import { PropertyDetailsInterface, PropertyForEnum } from "@/app/properties/page"
+import { PropertyDetailsInterface, PropertyForEnum } from "@/app/(main)/properties/page"
 
 export default function PropertyListingCard({ property }: { property: PropertyDetailsInterface }) {
     const propertyForText = property.for === PropertyForEnum.rent ? 'For Rent' : 'For Sale';

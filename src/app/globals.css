@@ -15,66 +15,117 @@ body {
 }
 
 @layer base {
-:root {
-  --radius: 0.5rem; /* Assuming radius is in rem */
+  :root {
+    --radius: 0.5rem;
+    /* Assuming radius is in rem */
 
-  --primary: 220 38% 18%; /* hsl values */
-  --primary-foreground: 210 40% 98%; /* Example foreground, adjust as needed */
+    --primary: 220 38% 18%;
+    /* hsl values */
+    --primary-foreground: 210 40% 98%;
+    /* Example foreground, adjust as needed */
 
-  --card: 0 0% 100%; /* Default light card background */
-  --card-foreground: 222.2 47.4% 11.2%; /* Default light card foreground */
+    --card: 0 0% 100%;
+    /* Default light card background */
+    --card-foreground: 222.2 47.4% 11.2%;
+    /* Default light card foreground */
 
-  --popover: 0 0% 100%; /* Default light popover background */
-  --popover-foreground: 222.2 47.4% 11.2%; /* Default light popover foreground */
+    --popover: 0 0% 100%;
+    /* Default light popover background */
+    --popover-foreground: 222.2 47.4% 11.2%;
+    /* Default light popover foreground */
 
-  --background: 0 0% 98%; /* Default light background */
-  --foreground: 222.2 47.4% 11.2%; /* Default light foreground */
+    --background: 0 0% 98%;
+    /* Default light background */
+    --foreground: 222.2 47.4% 11.2%;
+    /* Default light foreground */
 
-  --muted: 210 40% 96.1%; /* Default light muted background */
-  --muted-foreground: 215.4 16.3% 46.9%; /* Default light muted foreground */
+    --muted: 210 40% 96.1%;
+    /* Default light muted background */
+    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Default light muted foreground */
 
-  --accent: 210 40% 96.1%; /* Default light accent background */
-  --accent-foreground: 222.2 47.4% 11.2%; /* Default light accent foreground */
+    --accent: 210 40% 96.1%;
+    /* Default light accent background */
+    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Default light accent foreground */
 
-  --destructive: 0 84.2% 60.2%; /* Default destructive color */
-  --destructive-foreground: 210 40% 98%; /* Default destructive foreground */
+    --destructive: 0 84.2% 60.2%;
+    /* Default destructive color */
+    --destructive-foreground: 210 40% 98%;
+    /* Default destructive foreground */
 
-  --border: 214.3 31.8% 91.4%; /* Default light border color */
-  --input: 214.3 31.8% 91.4%; /* Default light input border color */
-  --ring: 221.2 83.2% 53.7%; /* Default light ring color */
+    --border: 214.3 31.8% 91.4%;
+    /* Default light border color */
+    --input: 214.3 31.8% 91.4%;
+    /* Default light input border color */
+    --ring: 221.2 83.2% 53.7%;
+    /* Default light ring color */
 
-  --radius: 0.5rem; /*radius from json*/
-}
+    --radius: 0.5rem;
+    /*radius from json*/
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 
-.dark {
-  --card: 222.2 84% 4.9%; /* Default dark card background */
-  --card-foreground: 210 40% 98%; /* Default dark card foreground */
+  .dark {
+    --card: 222.2 84% 4.9%;
+    /* Default dark card background */
+    --card-foreground: 210 40% 98%;
+    /* Default dark card foreground */
 
-  --popover: 222.2 84% 4.9%; /* Default dark popover background */
-  --popover-foreground: 210 40% 98%; /* Default dark popover foreground */
+    --popover: 222.2 84% 4.9%;
+    /* Default dark popover background */
+    --popover-foreground: 210 40% 98%;
+    /* Default dark popover foreground */
 
-  --background: 222.2 84% 4.9%; /* Default dark background */
-  --foreground: 210 40% 98%; /* Default dark foreground */
+    --background: 222.2 84% 4.9%;
+    /* Default dark background */
+    --foreground: 210 40% 98%;
+    /* Default dark foreground */
 
-  --muted: 217.2 32.6% 17.5%; /* Default dark muted background */
-  --muted-foreground: 215 20.2% 65.1%; /* Default dark muted foreground */
+    --muted: 217.2 32.6% 17.5%;
+    /* Default dark muted background */
+    --muted-foreground: 215 20.2% 65.1%;
+    /* Default dark muted foreground */
 
-  --accent: 217.2 32.6% 17.5%; /* Default dark accent background */
-  --accent-foreground: 210 40% 98%; /* Default dark accent foreground */
+    --accent: 217.2 32.6% 17.5%;
+    /* Default dark accent background */
+    --accent-foreground: 210 40% 98%;
+    /* Default dark accent foreground */
 
-  --destructive: 0 62.8% 30.6%; /* Default dark destructive color */
-  --destructive-foreground: 210 40% 98%; /* Default dark destructive foreground */
+    --destructive: 0 62.8% 30.6%;
+    /* Default dark destructive color */
+    --destructive-foreground: 210 40% 98%;
+    /* Default dark destructive foreground */
 
-  --border: 215 27.9% 16.9%; /* Default dark border color */
-  --input: 215 27.9% 16.9%; /* Default dark input border color */
-  --ring: 224.3 76.3% 48%; /* Default dark ring color */
-}
+    --border: 215 27.9% 16.9%;
+    /* Default dark border color */
+    --input: 215 27.9% 16.9%;
+    /* Default dark input border color */
+    --ring: 224.3 76.3% 48%;
+    /* Default dark ring color */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
