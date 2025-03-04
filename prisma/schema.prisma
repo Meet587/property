@@ -46,7 +46,7 @@ model Property {
   address       String       @db.VarChar(255)
   bedrooms      Int
   bathrooms     Int
-  sqft          Int
+  sqft          Float
   year_built    Int
   for           PropertyFor
   price         String       @db.VarChar(50)
