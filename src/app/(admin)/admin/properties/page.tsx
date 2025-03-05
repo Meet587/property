@@ -1,10 +1,10 @@
+import FeaturedProperties, { PropertyGrid } from "@/components/feature";
 import { Main } from "../../main";
 import { PropertyDialog } from "./components/property-dialogs";
 import { PropertyPrimaryButtons } from "./components/property-primary-buttons";
 import PropertyProvider from "./context/property-context";
 
 const Properties = () => {
-    
   return (
     <PropertyProvider>
       <Main>
@@ -15,9 +15,8 @@ const Properties = () => {
           </div>
           <PropertyPrimaryButtons />
         </div>
-        <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-          
-        </div>
+        {/* <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0"></div> */}
+        <PropertyGrid />
       </Main>
 
       <PropertyDialog />
